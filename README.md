@@ -1,8 +1,12 @@
-# Welcome to your Lovable project
+# Workflow Explainer
 
-## Project info
+An AI-powered tool to analyze and explain your automation workflows. Simply paste your workflow JSON and get a detailed, step-by-step breakdown.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
+
+- **AI-Powered Analysis**: Understand triggers, logic, and complexity in seconds.
+- **Support for Multi-Platform**: Works with n8n, Make, and Zapier.
+- **Documentation Ready**: Generate clear explanations for onboarding and auditing.
 
 ## How can I edit this code?
 
