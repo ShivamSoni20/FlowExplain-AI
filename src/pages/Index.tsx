@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { APP_NAME, APP_VERSION, APP_DESCRIPTION } from '@/config/constants';
+import { APP_NAME, APP_VERSION, APP_DESCRIPTION, PLATFORMS } from '@/config/constants';
 import { JsonEditor } from '@/components/JsonEditor';
 import { WorkflowResults } from '@/components/WorkflowResults';
 import { LoadingState } from '@/components/LoadingState';
@@ -96,18 +96,12 @@ const Index = () => {
                   to get an AI-powered breakdown.
                 </p>
                 <div className="mt-6 flex items-center justify-center gap-4 text-xs text-muted-foreground/70 font-mono">
-                  <span className="flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-success" />
-                    n8n
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    Make
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-warning" />
-                    Zapier
-                  </span>
+                  {PLATFORMS.map((platform) => (
+                    <span key={platform.name} className="flex items-center gap-1.5">
+                      <span className={`h-1.5 w-1.5 rounded-full ${platform.color}`} />
+                      {platform.name}
+                    </span>
+                  ))}
                 </div>
               </div>
 
