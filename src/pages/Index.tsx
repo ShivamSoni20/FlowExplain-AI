@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { APP_NAME, APP_VERSION, APP_DESCRIPTION, PLATFORMS } from '@/config/constants';
+import { APP_NAME, APP_VERSION, APP_DESCRIPTION, PLATFORMS, EMPTY_STATE_TEXT } from '@/config/constants';
 import { JsonEditor } from '@/components/JsonEditor';
 import { WorkflowResults } from '@/components/WorkflowResults';
 import { LoadingState } from '@/components/LoadingState';
@@ -91,9 +91,7 @@ const Index = () => {
                   Ready to analyze
                 </h3>
                 <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
-                  Paste your workflow JSON above and click{' '}
-                  <span className="font-mono text-primary text-sm">Explain Workflow</span>{' '}
-                  to get an AI-powered breakdown.
+                  {EMPTY_STATE_TEXT}
                 </p>
                 <div className="mt-6 flex items-center justify-center gap-4 text-xs text-muted-foreground/70 font-mono">
                   {PLATFORMS.map((platform) => (
