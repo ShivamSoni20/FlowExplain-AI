@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { APP_NAME, APP_VERSION, APP_DESCRIPTION } from '@/config/constants';
 import { JsonEditor } from '@/components/JsonEditor';
 import { WorkflowResults } from '@/components/WorkflowResults';
 import { LoadingState } from '@/components/LoadingState';
@@ -30,13 +31,13 @@ const Index = () => {
               </div>
               <div>
                 <h1 className="text-xl font-semibold text-foreground tracking-tight flex items-center gap-2">
-                  Workflow Explainer
+                  {APP_NAME}
                   <span className="text-xs font-mono font-normal px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
-                    v2.0
+                    {APP_VERSION}
                   </span>
                 </h1>
                 <p className="text-sm text-muted-foreground font-light">
-                  AI-powered automation workflow analysis
+                  {APP_DESCRIPTION}
                 </p>
               </div>
             </div>
