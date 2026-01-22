@@ -19,6 +19,8 @@ The project consists of two main parts: a **React Frontend** and an **n8n Backen
 - Displays the structured AI analysis in a human-readable format.
 
 ### 2. n8n Backend Workflow
+![n8n Workflow Screenshot](./n8n-workflow/workflow-screenshot.png)
+
 - **Webhook Trigger**: Receives the workflow JSON from the frontend.
 - **AI Agent (Chain of Thought)**: Uses **Google Gemini** to analyze the workflow structure. It evaluates nodes, connections, and logic.
 - **Formatting Node**: A JavaScript code node that cleans the AI's raw output, ensuring strictly valid JSON.
