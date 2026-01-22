@@ -8,6 +8,24 @@ An AI-powered tool to analyze and explain your automation workflows. Simply past
 - **Support for Multi-Platform**: Works with n8n, Make, and Zapier.
 - **Documentation Ready**: Generate clear explanations for onboarding and auditing.
 
+## How It Works
+
+The project consists of two main parts: a **React Frontend** and an **n8n Backend Workflow**.
+
+### 1. React Frontend
+- Built with **React**, **Vite**, **shadcn/ui**, and **Tailwind CSS**.
+- Provides a clean, modern interface for pasting workflow JSON.
+- Sends the JSON data to an n8n webhook for processing.
+- Displays the structured AI analysis in a human-readable format.
+
+### 2. n8n Backend Workflow
+- **Webhook Trigger**: Receives the workflow JSON from the frontend.
+- **AI Agent (Chain of Thought)**: Uses **Google Gemini** to analyze the workflow structure. It evaluates nodes, connections, and logic.
+- **Formatting Node**: A JavaScript code node that cleans the AI's raw output, ensuring strictly valid JSON.
+- **Response Node**: Returns the final, structured documentation back to the frontend.
+
+This architecture ensures high-speed analysis and consistent, high-quality documentation for even the most complex automation flows.
+
 ## How can I edit this code?
 
 If you want to work locally using your own IDE, you can clone this repo and push changes.

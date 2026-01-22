@@ -1,0 +1,148 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "explain-workflow",
+                "responseMode": "responseNode",
+                "options": {}
+            },
+            "id": "26d740e2-b939-4aad-a3e4-6d39fe9b7ed8",
+            "name": "Webhook Trigger",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                -32,
+                192
+            ],
+            "webhookId": "01f504e6-0516-4efd-a20b-4b3cd729583c"
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+            "typeVersion": 1,
+            "position": [
+                272,
+                416
+            ],
+            "id": "bed370d7-690a-47c5-8ca8-52c7600c1d83",
+            "name": "Google Gemini Chat Model",
+            "credentials": {
+                "googlePalmApi": {
+                    "id": "LNLUWFJjSYd4bqmr",
+                    "name": "Google Gemini(PaLM) Api account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "id": "6708d64f-d8df-4f07-acda-be6a3d51c721",
+            "name": "Return Explanation",
+            "type": "n8n-nodes-base.respondToWebhook",
+            "typeVersion": 1,
+            "position": [
+                752,
+                192
+            ]
+        },
+        {
+            "parameters": {
+                "promptType": "define",
+                "text": "=Here is the json of workflow \n- {{ $json.body.workflowJson }}",
+                "options": {
+                    "systemMessage": "YOU ARE THE WORLD'S FOREMOST AUTOMATION DOCUMENTATION SPECIALIST IN THE FIELD OF WORKFLOW ANALYSIS AND AI-ASSISTED TECHNICAL EXPLANATION. YOUR OBJECTIVE IS TO ANALYZE N8N WORKFLOW STRUCTURES AND PRODUCE A CLEAR, HUMAN-READABLE EXPLANATION IN STRICTLY VALID JSON FORMAT.\n\n### INSTRUCTIONS ###\n- YOU MUST EXECUTE THE TASK WITH EXTREME PRECISION AND STRUCTURED THINKING\n- YOUR FINAL OUTPUT MUST BE A SINGLE, WELL-FORMED JSON OBJECT — NO MARKDOWN, NO EXTRA TEXT\n- USE THE CHAIN OF THOUGHTS BELOW TO STRUCTURE YOUR INTERNAL REASONING BEFORE OUTPUTTING THE FINAL JSON\n- NEVER RESPOND IN ANY FORMAT OTHER THAN JSON\n- THE JSON MUST FOLLOW THIS SCHEMA:\n{\n  \"workflow_summary\": \"high-level description of the workflow purpose\",\n  \"step_by_step_explanation\": [],\n  \"trigger_type\": \"how the workflow is initiated\",\n  \"primary_use_case\": \"business or technical problem solved\",\n  \"complexity_level\": \"low | medium | high\",\n  \"maintenance_notes\": \"important notes for developers or operators\"\n}\n\n### CHAIN OF THOUGHTS ###\n1. **UNDERSTAND**: IDENTIFY THE OVERALL PURPOSE OF THE WORKFLOW FROM THE PROVIDED JSON\n2. **BASICS**: DETECT TRIGGERS, CORE NODES, DATA FLOW, AND TERMINATION POINTS\n3. **BREAK DOWN**: EXPLAIN EACH MAJOR NODE OR LOGICAL SECTION IN SEQUENTIAL ORDER\n4. **ANALYZE**: TRANSLATE TECHNICAL OPERATIONS INTO SIMPLE, NON-AMBIGUOUS LANGUAGE\n5. **BUILD**: CONSTRUCT A CLEAR AND EDUCATIONAL JSON OUTPUT THAT CAN SERVE AS DOCUMENTATION\n6. **EDGE CASES**: IF NODES OR DATA ARE UNCLEAR, ACKNOWLEDGE ASSUMPTIONS WITHOUT INVENTING DETAILS\n7. **FINAL ANSWER**: RETURN ONLY THE FINAL JSON OBJECT WITH NO EXTRA EXPLANATION\n\n### WHAT NOT TO DO ###\n- DO NOT RETURN MARKDOWN, TEXT, BULLET POINTS, OR HEADERS — JSON ONLY\n- NEVER OMIT REQUIRED FIELDS IN THE OUTPUT STRUCTURE\n- NEVER HALLUCINATE NODE BEHAVIOR OR BUSINESS LOGIC\n- DO NOT INCLUDE OPINIONS OR UNVERIFIED ASSUMPTIONS\n- DO NOT OUTPUT MULTIPLE JSON OBJECTS\n"
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 3,
+            "position": [
+                192,
+                192
+            ],
+            "id": "91994e96-934d-4db1-bf78-e0053c4e6a31",
+            "name": "Explain-My-Workflow"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Get raw AI output string\nconst rawOutput = $json.output;\n\n// Safety check\nif (!rawOutput || typeof rawOutput !== \"string\") {\n  return [{\n    json: {\n      error: \"Invalid AI output format\",\n      raw: rawOutput\n    }\n  }];\n}\n\n// Remove markdown code fences if present\nlet cleaned = rawOutput\n  .replace(/```json/gi, \"\")\n  .replace(/```/g, \"\")\n  .trim();\n\n// Attempt to parse JSON\ntry {\n  const parsedJson = JSON.parse(cleaned);\n\n  return [{\n    json: parsedJson\n  }];\n\n} catch (error) {\n  return [{\n    json: {\n      error: \"Failed to parse AI JSON output\",\n      message: error.message,\n      cleaned_output: cleaned\n    }\n  }];\n}\n"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                544,
+                192
+            ],
+            "id": "17d876e8-6848-4b43-989d-82a9a7496b55",
+            "name": "Formatting-Node"
+        },
+        {
+            "parameters": {
+                "height": 256,
+                "width": 224
+            },
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                -304,
+                64
+            ],
+            "typeVersion": 1,
+            "id": "f39573e8-b110-4f11-bff9-2b1211d38d6c",
+            "name": "Sticky Note"
+        }
+    ],
+    "connections": {
+        "Webhook Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Explain-My-Workflow",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Gemini Chat Model": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "Explain-My-Workflow",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Explain-My-Workflow": {
+            "main": [
+                [
+                    {
+                        "node": "Formatting-Node",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Formatting-Node": {
+            "main": [
+                [
+                    {
+                        "node": "Return Explanation",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "pinData": {},
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "eef6635fdfb9e5419ef02e25138984a55295f746e58b122fba546cb85a125bd9"
+    }
+}
