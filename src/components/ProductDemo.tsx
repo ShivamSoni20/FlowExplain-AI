@@ -160,9 +160,8 @@ export function ProductDemo({ isOpen, onClose }: ProductDemoProps) {
             {SCENE_DURATIONS.map((_, i) => (
               <div
                 key={i}
-                className={`h-1.5 w-8 rounded-full transition-colors ${
-                  i === currentScene ? 'bg-primary' : 'bg-muted-foreground/30'
-                }`}
+                className={`h-1.5 w-8 rounded-full transition-colors ${i === currentScene ? 'bg-primary' : 'bg-muted-foreground/30'
+                  }`}
               />
             ))}
           </div>
@@ -215,7 +214,7 @@ function Scene0Introduction() {
         transition={{ delay: 0.4 }}
         className="text-4xl md:text-5xl font-bold text-foreground mb-3 text-center"
       >
-        Explain My Workflow <span className="text-primary">AI</span>
+        FlowExplain Ai <span className="text-primary">AI</span>
       </motion.h1>
 
       <motion.p
@@ -335,11 +334,10 @@ function Scene2ActionTrigger() {
         className="relative"
       >
         <motion.button
-          className={`px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 transition-all ${
-            isLoading
+          className={`px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 transition-all ${isLoading
               ? 'bg-primary/80 text-primary-foreground'
               : 'bg-primary text-primary-foreground glow-primary'
-          }`}
+            }`}
           animate={!isLoading ? { scale: [1, 1.02, 1] } : {}}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
@@ -610,7 +608,7 @@ function Scene6Closing({ onTryFree }: { onTryFree: () => void }) {
         <div className="p-3 rounded-xl bg-primary/10 border border-primary/30">
           <Cpu className="h-8 w-8 text-primary" />
         </div>
-        <h2 className="text-3xl font-bold">Workflow Explainer</h2>
+        <h2 className="text-3xl font-bold">FlowExplain Ai</h2>
       </motion.div>
 
       <motion.p

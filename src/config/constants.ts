@@ -1,4 +1,4 @@
-export const APP_NAME = "Workflow Explainer";
+export const APP_NAME = "FlowExplain Ai";
 export const APP_VERSION = "v2.0";
 export const APP_DESCRIPTION = "AI-powered automation workflow analysis";
 

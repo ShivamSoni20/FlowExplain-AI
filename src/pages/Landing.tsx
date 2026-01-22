@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ProductDemo } from '@/components/ProductDemo';
-import { 
-  Cpu, 
-  ArrowRight, 
-  Zap, 
-  GitBranch, 
-  FileJson, 
+import {
+  Cpu,
+  ArrowRight,
+  Zap,
+  GitBranch,
+  FileJson,
   Sparkles,
   CheckCircle2,
   Play
@@ -47,7 +47,7 @@ const Landing = () => {
 
       {/* Radial gradient overlay */}
       <div className="fixed inset-0 bg-gradient-radial pointer-events-none" />
-      
+
       {/* Animated background elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/3 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
@@ -60,7 +60,7 @@ const Landing = () => {
               <div className="relative p-2.5 rounded-xl bg-primary/10 border border-primary/20 glow-subtle">
                 <Cpu className="h-5 w-5 text-primary" />
               </div>
-              <span className="text-xl font-semibold tracking-tight">Workflow Explainer</span>
+              <span className="text-xl font-semibold tracking-tight">FlowExplain Ai</span>
             </div>
             <Link to="/app">
               <Button variant="outline" size="sm" className="gap-2">
@@ -90,7 +90,7 @@ const Landing = () => {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed opacity-0 animate-fade-up" style={{ animationDelay: '200ms' }}>
-            Paste any workflow JSON and get instant, AI-powered explanations. 
+            Paste any workflow JSON and get instant, AI-powered explanations.
             Perfect for documentation, onboarding, and debugging.
           </p>
 
@@ -102,9 +102,9 @@ const Landing = () => {
                 Try It Free
               </Button>
             </Link>
-            <Button 
-              variant="outline" 
-              size="lg" 
+            <Button
+              variant="outline"
+              size="lg"
               className="gap-2 h-12 px-8 text-base"
               onClick={() => setShowDemo(true)}
             >
@@ -138,7 +138,7 @@ const Landing = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div 
+              <div
                 key={feature.title}
                 className="relative p-6 rounded-2xl bg-card/60 border border-border/60 backdrop-blur-sm hover:border-primary/30 transition-all duration-300 group opacity-0 animate-fade-up"
                 style={{ animationDelay: `${200 + index * 100}ms` }}
@@ -147,7 +147,7 @@ const Landing = () => {
                 <div className="absolute -top-3 -left-3 h-8 w-8 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center text-xs font-mono font-bold text-primary">
                   {String(index + 1).padStart(2, '0')}
                 </div>
-                
+
                 <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 w-fit mb-4 group-hover:glow-subtle transition-all">
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
@@ -172,7 +172,7 @@ const Landing = () => {
                   <span className="text-primary">Automation Engineers</span>
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Whether you're onboarding team members, documenting complex workflows, 
+                  Whether you're onboarding team members, documenting complex workflows,
                   or debugging automation logic — we've got you covered.
                 </p>
                 <Link to="/app">
@@ -189,7 +189,7 @@ const Landing = () => {
                   'Maintenance recommendations',
                   'Step-by-step breakdowns',
                 ].map((benefit) => (
-                  <div 
+                  <div
                     key={benefit}
                     className="flex items-center gap-3 p-3 rounded-lg bg-muted/30 border border-border/40"
                   >
@@ -215,7 +215,7 @@ const Landing = () => {
           <Link to="/app">
             <Button size="lg" className="gap-2 h-12 px-10 text-base glow-primary">
               <Cpu className="h-5 w-5" />
-              Launch Workflow Explainer
+              Launch FlowExplain Ai
             </Button>
           </Link>
         </div>
